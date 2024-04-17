@@ -1,1 +1,2 @@
-# Please list here all python dependencies of your tool
+pandas
+sqlalchemy
