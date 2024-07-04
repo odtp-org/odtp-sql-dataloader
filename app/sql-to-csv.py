@@ -4,7 +4,7 @@
 
 import sqlalchemy
 from sqlalchemy import text
-import pandas
+import pandas as pd
 import os
 
 # Variables
@@ -22,12 +22,18 @@ engine = sqlalchemy.create_engine(
     f"{protocol}://{login_user}:{password}@{host}:{port}/{database}"
 )
 
+# Remove the double quotes if they exist
+if query.startswith('"') and query.endswith('"'):
+    query = query[1:-1]
+
+print(f'CONNECTING HOST: {host}:{port}/{database}')
 with engine.connect() as conn:
+    print(f'QUERY: {query}')
     df = pd.read_sql(text(query), conn)
 
 engine.dispose()
 
 # Storing CSV
 output_filename = os.path.join("/odtp/odtp-output/", os.environ["OUTPUT_FILENAME"])
-
+print(f'EXPORTING TO: {output_filename}')
 df.to_csv(output_filename, index=False)
