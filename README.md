@@ -13,7 +13,7 @@ Dataloader from any SQL database into CSV. Perform custom queries.
 ```
 odtp new odtp-component-entry \
 --name odtp-sql-dataloader \
---component-version 0.1.0 \
+--component-version v0.1.1 \
 --repository https://github.com/odtp-org/odtp-sql-dataloader
 ``` 
 
@@ -96,6 +96,10 @@ rm -r test
 
 
 ## CHANGELOG
+
+- v0.1.1
+    - Client updated to v0.1.2
+    - Included github action for dockerhub publishing
 
 - v0.1.0
     - First release
